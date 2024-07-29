@@ -7,6 +7,7 @@ import (
 )
 
 func (b *Backuper) readDir(src string) error {
+	src = normalizePath(src)
 	files, err := afero.ReadDir(b.reader, src)
 	if err != nil {
 		return err
