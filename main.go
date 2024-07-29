@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
 
 	"github.com/spf13/afero"
@@ -39,12 +38,10 @@ func main() {
 		files:  []File{},
 	}
 
-	err := backuper.readDir(".")
+	err := backuper.readDir(*src)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for _, file := range backuper.files {
-		fmt.Println(string(file.content))
-	}
+	backuper.writeDir(*dst)
 }
